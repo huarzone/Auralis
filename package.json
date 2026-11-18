@@ -1,0 +1,48 @@
+{
+  "name": "auralis",
+  "version": "0.1.2",
+  "private": true,
+  "type": "module",
+  "description": "Auralis · 映境 — theme and usage insights for DSH",
+  "engines": {
+    "node": ">=24.14.0",
+    "dsh": "0.2.1-rc.5 || 0.2.2-rc.4"
+  },
+  "exports": {
+    ".": "./src/index.mjs",
+    "./client": "./dist/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "dist/client.js",
+    "assets/wallpaper.webp",
+    "scripts/build.mjs",
+    "cordis.patch.yml"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "prepack": "npm run build",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check src/client.cjs && node --check src/usage-view.cjs && node --check src/usage-data.cjs && node --check src/usage-charts.cjs && node --check src/usage-runtime.cjs && node --check src/usage-styles.cjs && node --check src/settings-model.cjs && node --check src/settings-client.cjs && node --check src/settings-page.cjs && node --check src/index.mjs && node --check src/usage-server.mjs && node --check src/settings-server.mjs && node --check scripts/build.mjs && node --check dist/client.js"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-api-remotes",
+        "@deepseek-ai/dsh-client-ui-renderer",
+        "@deepseek-ai/dsh-client-ui-settings-general",
+        "@deepseek-ai/dsh-client-ui-theme",
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-plugin-manager"
+      ]
+    }
+  }
+}

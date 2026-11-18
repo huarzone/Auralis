@@ -1,0 +1,11 @@
+# Keep native authentication, settings, exports and approvals; replace UI contributions only.
+- id: ui-settings-account
+  disabled: true
+- id: ui-message-feedback
+  disabled: true
+- id: ui-settings-models
+  config:
+    credentialOnboarding: false
+- insert:
+    - id: auralis
+      name: auralis
